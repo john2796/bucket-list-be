@@ -1,178 +1,173 @@
-# Bucket List API
+# 🔥 Bucket-List-API 🔥
 
-## Base URL: https://bucket-list-be.herokuapp.com/
+## Backend URL : https://bucket-list-webpt6.herokuapp.com/
 
----
+## Table of Contents
 
-##Endpoints
+- [Summary Table of API Endpoints](#summary-table-of-api-endpoints)
 
-### GET /api/users
+  - [Register-user](#register-user)
+  - [Login-user](#login-user)
+  - [Posts](#posts)
 
-    -returns all users
+### Summary Table of API Endpoints
 
-### GET /api/user
+| Type | Endpoints     | Description   | Access |
+| ---- | ------------- | ------------- | ------ |
+| POST | /api/register | Register User | Public |
+| POST | /api/login    | Login user    | Public |
 
-    -returns the user currently logged in
 
-### GET /api/user/:id
+### If Access is Private you need to pass token as header (Authorization...)
 
-    -returns a user by id
+## Register-user
 
-### GET /api/user/:user_id/items
+`Register example`
 
-    -returns all bucket list items for user_id
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/register
 
-### GET /api/user/friends
+```
+{
+	"name": "john12",                       required
+	"email": "john12@yahoo.com",            required
+	"password": "john"                      required
+}
 
-    -returns logged in users friends
+```
 
-### GET /api/item/:id'
+#### Register user: 201 response ✅
 
-    -returns bucket list item for id
+```
+ {
+    "id": 1,
+    "username": "john miranda",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMiwidXNlcm5hbWUiOiJqb2huIG1pcmFuZGEiLCJpYXQiOjE1NjM3NzA5MjgsImV4cCI6MTU2Mzg1NzMyOH0.6NS1ABm8VY0iu0ltLPjpGNlIxWQWaU3-YLnA0ll9XQU"
 
-### GET /api/item/:item_id/posts
+}
+```
 
-    -returns all posts for item_id
+#### Register user: 400 Bad Request ❗️
+- If there's no email ,password 
+```
+{
+    "message": "Missing user information"
+}
+```
 
+#### Register user: 500 Internal Server Errror ❗️
 
-### GET /api/item/post/:id
+```
+{
+    "message": "insert into `users` (`email`, `location`, `password`, `username`) values ('john@yahoo.com', 'San Diego', 'miranda', 'john27') - SQLITE_CONSTRAINT: UNIQUE constraint failed: users.username"
+}
+```
 
-    -returns a post by id
+## Login-user
 
-### GET /api/item/post/:post_id/images
+### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/auth/login
 
-    -returns an all images for post_id
+`Login example`
 
-### GET /api/item/post/image/:id
+```
+{
+    "username": "john miranda12",
+    "password": "password"
+}
 
-    -returns image by id 
+```
 
-### POST /api/register
+#### Login user: 200 response ✅
 
-    -input:
-        -name -Required
-        -email -Required
-        -password -Required
+```
+{
+    "message": "john miranda12 is logged in.",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxNCwidXNlcm5hbWUiOiJqb2huIG1pcmFuZGExMiIsImlhdCI6MTU2Mzc3MTM2MiwiZXhwIjoxNTYzODU3NzYyfQ.Vp1_TX_iBL9YPQ0kEPa8dzdQFcdXg8snDfbYND9RF8k"
+}
+```
 
-    -returns { message: "User created", token: "user token" }
+#### Login user: 400 Bad Request ❗️
 
-### POST /api/login
+```
+{
+    "message": "Username field is required"
+}
+```
 
-    -input:
-        -email -Required
-        -password -Required
+#### Login user: 401 Internal Server Errror ❗️
 
-    -returns { message: "Logged in", token: "user token" }
-
-### POST /api/item
-
-    -input:
-        -user_id -Required
-        -description -Required
-
-    -returns id of new item
-
-### POST /api/item/post
-
-    -input:
-        -item_id -Required
-        -message -Required
-
-    -returns id of new post
-
-### POST /api/item/post/image
-
-    -input:
-        -post_id -Required
-        -image 
-        -url
-
-    image and url are not required so you can choose how to store an image.
-
-    -returns id of new image
-
-### POST /api/user/friends/:friend_id
-
-    Creates a friendship with friend of friend_id
-
-    -returns { message: Friendship created }
-
-### PUT /api/item/:id
-
-    -input:
-        -user_id -Required
-        -description -Required
-
-     -returns id of updated item
-
-### PUT /api/item/post/:id
-
-    -input:
-        -item_id -Required
-        -message -Required
-
-    -returns id of updated post
-
-### PUT /item/post/image/:id
-
-    -input:
-        -post_id -Required
-        -image 
-        -url
-
-    -returns id of updated image
-
-### DELETE /api/item/:id
-
-    -deletes an item by id and returns { message: "deleted id id# " }
-
-### DELETE /api/item/post/:id
-
-    -deletes an post by id and returns { message: "deleted id id# " }
-
-
-### DELETE /api/item/post//image/:id
-
-    -deletes an image by id and returns { message: "deleted id id# " }
-
-### DELETE /api/user/friends/:friend_id
-
-    -deletes a friendship for friend_id and returns { message: "Unfriended " }
-
-
-
-
----
-
-
-##Contact Endpoints
-
-### GET /api/contacts
-
-    -returns an array of all contacts
-
-### GET /api/contacts/:id/messages
-
-    -returns an array of all messages for a contact
-
-### POST /api/contacts
-
-    -input:
-        -firstname -Required
-        -lastname  -Required
-        -email     -Required
-
-    -returns id of new contact
-
-### POST /api/contacts/:id/messages
-
-    -input:
-        -contact_id -Required
-        -message    -Required
-
-    -returns id of new message
-
-### DELETE /api/contacts/:id
-
-    -deletes a contact by id
-
+```
+{
+    "message": "Invalid credentials, Unauthorized"
+}
+```
+
+## Posts
+
+### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/posts/all
+
+- You will need to make a `GET` request to this endpoint
+- This will return all the posts
+- @Access Public , you don't need to Log in for this endpoint
+
+### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/posts
+
+- User must be Logged In
+- Headers Authorization required
+- You will need to make a `GET` request to this endpoint
+
+```
+[
+    {
+        "id": 1,
+        "chef_name": "Erica",
+        "recipe_title": "Pizza",
+        "item_photo": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+        "chef_location": "Boston, Massachusetts",
+        "item_ingredients": "Pizza Dough, Pizza Sauce, Cheese, Basil",
+        "user_id": 1
+    },
+]
+
+```
+
+### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/posts/5
+
+- You will need to make a `GET` request to this endpoint
+- fetch Posts by id
+- Add Posts Id on the end of the URL just like the endpoint above
+
+```
+{
+    "id": 5,
+    "chef_name": "Mitsuki",
+    "recipe_title": "Soup",
+    "item_photo": "https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
+    "chef_location": "Austin, TX",
+    "item_ingredients": "Water, Tomatoes, Cream, Basil",
+    "user_id": 2
+}
+
+```
+
+### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/posts/
+
+- Creating new post
+- You will need to make a `POST` request to this endpoint
+- Payload example below
+- Headers Authorization required
+
+```
+{
+    "chef_name": "Mitsuki",
+    "recipe_title": "Soup",
+    "item_photo": "https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
+    "chef_location": "Austin, TX",
+    "item_ingredients": "Water, Tomatoes, Cream, Basil",
+    "user_id": 2
+}
+
+```
+
+#### Documented by:
+
+- John Miranda : Team-Lead / Project-Manager --> you can dm me directly if you have any question `Happy Coding🧙🧙🧙`
