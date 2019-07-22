@@ -10,11 +10,9 @@
   - [Login-user](#login-user)
   - [Users](#users)
   - [Contact](#contact)
-    - [Messages](#messages)
   - [Buckets](#buckets)
     - [Item](#item)
     - [Posts](#posts)
-    - [Images](#images)
 
 ### Summary Table of API Endpoints
 
