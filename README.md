@@ -10,11 +10,11 @@
   - [Login-user](#login-user)
   - [Users](#users)
   - [Contact](#contact)
-      - [Messages](#messages)
+    - [Messages](#messages)
   - [Buckets](#buckets)
-      - [Item](#item)
-      - [Posts](#posts)
-      - [Images](#images)
+    - [Item](#item)
+    - [Posts](#posts)
+    - [Images](#images)
 
 ### Summary Table of API Endpoints
 
@@ -46,9 +46,8 @@
 | GET    | /api/contacts                  | get contacts                         | public  |
 | POST   | /api/contacts                  | add contacts                         | public  |
 | DELETE | /api/contacts/:id              | delete contacts                      | public  |
-| GET    | /contacts/:id/messages         | get messages                         | public  |
-| POST   | /contacts/:id/messages         | add messages                         | public  |
-
+| GET    | /api/contacts/:id/messages     | get messages                         | public  |
+| POST   | /api/contacts/:id/messages     | add messages                         | public  |
 
 ### If Access is Private you need to pass token as header (Authorization...)
 
@@ -77,7 +76,9 @@
 ```
 
 #### Register user: 400 Bad Request ❗️
-- If there's no email ,password 
+
+- If there's no email ,password
+
 ```
 {
     "message": "Missing user information"
@@ -97,7 +98,6 @@
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/login
 
 `Login example`
-
 
 ```
 {
@@ -133,12 +133,10 @@
 ```
 
 ## Users
+
 - These are examples of what endpoints you can do with `/api/user`
 - User must be Logged In
 - Headers Authorization required
-
-
-
 
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/user
 
@@ -156,6 +154,7 @@
 }
 
 ```
+
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/users
 
 - You will need to make a `GET` request to this endpoint
@@ -186,11 +185,13 @@
 }
 
 ```
+
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/user/2
 
 - Get user by id
 - You will need to make a `GET` request to this endpoint
 - And add id to @params
+
 ```
 {
     "user": {
@@ -202,10 +203,12 @@
 }
 
 ```
+
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/user/1/items
 
 - You will need to make a `GET` request to this endpoint
 - Need user_id to @params
+
 ```
 {
     "items": [
@@ -235,16 +238,18 @@
 
 ```
 
+## Buckets
 
-## Buckets 
 ### Item
+
 - These are examples of what endpoints you can do with `/api/item`
 - User must be Logged In
 - Headers Authorization required
 
-
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/2
+
 - Get item by id
+
 ```
 {
     "item": {
@@ -257,9 +262,12 @@
 }
 
 ```
+
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/
+
 - Post Bucket item
 - Payload example below
+
 ```
 {
     "completed": false,
@@ -268,35 +276,38 @@
 }
 
 ```
+
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/17
-- Update item 
+
+- Update item
 - pass item id in the @params
 - type of request `PUT`
 
-
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/17
-- DELETING an Item 
+
+- DELETING an Item
 - pass item id in the @params
 - type of request `DELETE`
-
 
 ### Posts
 
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/post/17
+
 - Getting post by id
 - type of request `GET`
 - 200 success response 💚
-<!-- 
-  ```
-  {
-    "post": {
-        "id": 17,
-        "item_id": 1,
-        "message": "I did not drive one",
-        "created": "2019-07-22T21:11:16.983Z"
-    }
-}
-``` -->
+  <!-- 
+    ```
+    {
+      "post": {
+          "id": 17,
+          "item_id": 1,
+          "message": "I did not drive one",
+          "created": "2019-07-22T21:11:16.983Z"
+      }
+  }
+
+```-->
 
 
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/post
@@ -304,10 +315,12 @@
 - type of request `POST`
 - payload example below
 ```
+
 {
-    "item_id": 1,
-    "message": "I did not drive one"
+"item_id": 1,
+"message": "I did not drive one"
 }
+
 ```
 
 ### Images
@@ -324,56 +337,65 @@
 - type of request `POST`
 - payload example below
 ```
+
 {
-    "post_id":1,
-    "url":"https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2019/07/21/Pictures/boxing-pacquiao-vs-thurman_89b8aab8-ab7d-11e9-bdb2-acd0277ecbef.jpg"
+"post_id":1,
+"url":"https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2019/07/21/Pictures/boxing-pacquiao-vs-thurman_89b8aab8-ab7d-11e9-bdb2-acd0277ecbef.jpg"
 }
+
 ```
 
 
 ### Contact
 
-### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts 
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts
 - GET all contacts
 - type of request `GET`
 - 200 success response below
 - Public no need to be logged in
 ```
+
 {
-    "contacts": [
-        {
-            "id": 1,
-            "firstname": "test",
-            "lastname": "test",
-            "email": "test@yahoo.com"
-        }
-    ]
+"contacts": [
+{
+"id": 1,
+"firstname": "test",
+"lastname": "test",
+"email": "test@yahoo.com"
 }
+]
+}
+
 ```
-### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts 
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts
 - Add Contact
 - type of request `POST`
-- Public 
+- Public
 - Payload example below
 ```
+
 {
-	"firstname":"test",
-	"lastname": "test",
-	 "email":"test@yahoo.com"
+"firstname":"test",
+"lastname": "test",
+"email":"test@yahoo.com"
 }
+
 ```
 ### Messages
-### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts/3/messages 
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts/3/messages
 - Add Contact
 - type of request `POST`
-- Public 
+- Public
 - Payload example below
 ```
+
 {
-	"contact_id":1, 
-	"message": "lorem ipsume"
+"contact_id":1,
+"message": "lorem ipsume"
 }
+
 ```
 #### Documented by:
 
 - John Miranda : Team-Lead / Project-Manager --> you can dm me directly if you have any question `Happy Coding🧙🧙🧙`
+```
