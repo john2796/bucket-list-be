@@ -10,27 +10,32 @@
   - [Login-user](#login-user)
   - [Users](#users)
   - [Buckets](#buckets)
+      - [Item](#item)
+      - [Posts](#posts)
 
 ### Summary Table of API Endpoints
 
-| Type   | Endpoints                | Description                          | Access  |
-| ------ | ------------------------ | ------------------------------------ | ------- |
-| POST   | /api/register            | Register User                        | Public  |
-| POST   | /api/login               | Login user                           | Public  |
-| GET    | /api/users               | Get all users                        | Private |
-| GET    | /api/user                | Get current user                     | Private |
-| GET    | /api/user/:id            | Get user by id                       | Private |
-| GET    | /api/user/:id/items      | Get all users bucket list items      | Private |
-| GET    | /api/user/friends        | Get all users friends                | Private |
-| POST   | /user/friends/:friend_id | Add a friend to your friends list    | Private |
-| DELETE | /user/friends/:friend_id | Remove a friend to your friends list | Private |
-| GET    | /api/item/:id            | get item by id                       | Private |
-| POST   | /api/item                | post item                            | Private |
-| PUT    | /api/item/:id            | Update item                          | Private |
-| DELETE | /api/item/:id            | delete item                          | Private |
-| GET    | /api/item/:item_id/posts | Get array of posts by item_id        | Private |
-| GET    | /api/item/post/:id       | get post by id                       | Private |
-| POST   | /api/item/post           | Add a post                           | Private |
+| Type   | Endpoints                      | Description                          | Access  |
+| ------ | ------------------------------ | ------------------------------------ | ------- |
+| POST   | /api/register                  | Register User                        | Public  |
+| POST   | /api/login                     | Login user                           | Public  |
+| GET    | /api/users                     | Get all users                        | Private |
+| GET    | /api/user                      | Get current user                     | Private |
+| GET    | /api/user/:id                  | Get user by id                       | Private |
+| GET    | /api/user/:id/items            | Get all users bucket list items      | Private |
+| GET    | /api/user/friends              | Get all users friends                | Private |
+| POST   | /user/friends/:friend_id       | Add a friend to your friends list    | Private |
+| DELETE | /user/friends/:friend_id       | Remove a friend to your friends list | Private |
+| GET    | /api/item/:id                  | get item by id                       | Private |
+| POST   | /api/item                      | post item                            | Private |
+| PUT    | /api/item/:id                  | Update item                          | Private |
+| DELETE | /api/item/:id                  | delete item                          | Private |
+| GET    | /api/item/:item_id/posts       | Get array of posts by item_id        | Private |
+| GET    | /api/item/post/:id             | get post by id                       | Private |
+| PUT    | /api/item/post/:id             | Update post                          | Private |
+| DELETE | /api/item/post/:id             | Delete post                          | Private |
+| POST   | /api/item/post                 | Add a post                           | Private |
+| POST   | /api/item/post/:post_id/images | Add image                            | Private |
 
 
 ### If Access is Private you need to pass token as header (Authorization...)
@@ -219,7 +224,8 @@
 ```
 
 
-## Buckets
+## Buckets 
+### Item
 - These are examples of what endpoints you can do with `/api/item`
 - User must be Logged In
 - Headers Authorization required
@@ -262,6 +268,34 @@
 - type of request `DELETE`
 
 
+### Posts
+
+
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/post/17
+- Getting post by id
+- type of request `GET`
+  `200 success response 💚`
+  ```
+  {
+    "post": {
+        "id": 17,
+        "item_id": 1,
+        "message": "I did not drive one",
+        "created": "2019-07-22T21:11:16.983Z"
+    }
+}
+  ```
+
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/post
+- Add a post
+- type of request `POST`
+- payload example below
+```
+{
+    "item_id": 1,
+    "message": "I did not drive one"
+}
+```
 
 
 
