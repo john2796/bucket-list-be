@@ -108,6 +108,7 @@ router.delete("/item/post/:id", (req, res) => {
     })
 })
 
+// ---------- IMAGES CRUD STARTS HERE ----------------
 router.get("/item/post/:post_id/images", (req, res) => {
   bucketPostImageDb
     .getBucketItemPostImageByPostId(req.params.post_id)
