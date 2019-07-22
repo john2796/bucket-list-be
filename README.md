@@ -10,9 +10,11 @@
   - [Login-user](#login-user)
   - [Users](#users)
   - [Contact](#contact)
+    - [Messages](#Messages)
   - [Buckets](#buckets)
     - [Item](#item)
     - [Posts](#posts)
+    - [Images](#images)
 
 ### Summary Table of API Endpoints
 
@@ -293,25 +295,13 @@
 
 - Getting post by id
 - type of request `GET`
-- 200 success response 💚
-  <!-- 
-    ```
-    {
-      "post": {
-          "id": 17,
-          "item_id": 1,
-          "message": "I did not drive one",
-          "created": "2019-07-22T21:11:16.983Z"
-      }
-  }
-
-```-->
-
 
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/post
+
 - Add a post
 - type of request `POST`
 - payload example below
+
 ```
 
 {
@@ -322,18 +312,21 @@
 ```
 
 ### Images
+
 - CRUD
 
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/post/:post_id/images
+
 - you need to pass post_id as params
 - type of request `GET`
 - get all images from that's equal to post_id
 
-
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/post/image
+
 - Add image
 - type of request `POST`
 - payload example below
+
 ```
 
 {
@@ -343,33 +336,36 @@
 
 ```
 
-
 ### Contact
 
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts
+
 - GET all contacts
 - type of request `GET`
 - 200 success response below
 - Public no need to be logged in
+
 ```
 
 {
 "contacts": [
-{
-"id": 1,
-"firstname": "test",
-"lastname": "test",
-"email": "test@yahoo.com"
+    {
+    "id": 1,
+    "firstname": "test",
+    "lastname": "test",
+    "email": "test@yahoo.com"
+    }
+ ]
 }
-]
-}
-
 ```
+
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts
+
 - Add Contact
 - type of request `POST`
 - Public
 - Payload example below
+
 ```
 
 {
@@ -379,12 +375,16 @@
 }
 
 ```
+
 ### Messages
+
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts/3/messages
+
 - Add Contact
 - type of request `POST`
 - Public
 - Payload example below
+
 ```
 
 {
@@ -393,7 +393,11 @@
 }
 
 ```
+
 #### Documented by:
 
 - John Miranda : Team-Lead / Project-Manager --> you can dm me directly if you have any question `Happy Coding🧙🧙🧙`
+
+```
+
 ```
