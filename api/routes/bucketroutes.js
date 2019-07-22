@@ -21,6 +21,7 @@ router.post("/item", (req, res) => {
   bucketDb
     .createBucketItem(req.body)
     .then(response => {
+      console.log(response)
       res.status(200).json({ id: response })
     })
     .catch(({ message }) => {
