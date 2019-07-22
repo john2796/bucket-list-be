@@ -16,36 +16,36 @@
 
 ### Summary Table of API Endpoints
 
-| Type   | Endpoints                      | Description                          | Access  |
-| ------ | ------------------------------ | ------------------------------------ | ------- |
-| POST   | /api/register                  | Register User                        | Public  |
-| POST   | /api/login                     | Login user                           | Public  |
-| GET    | /api/users                     | Get all users                        | Private |
-| GET    | /api/user                      | Get current user                     | Private |
-| GET    | /api/user/:id                  | Get user by id                       | Private |
-| GET    | /api/user/:id/items            | Get all users bucket list items      | Private |
-| GET    | /api/user/friends              | Get all users friends                | Private |
-| POST   | /user/friends/:friend_id       | Add a friend to your friends list    | Private |
-| DELETE | /user/friends/:friend_id       | Remove a friend to your friends list | Private |
-| GET    | /api/item/:id                  | get item by id                       | Private |
-| POST   | /api/item                      | post item                            | Private |
-| PUT    | /api/item/:id                  | Update item                          | Private |
-| DELETE | /api/item/:id                  | delete item                          | Private |
-| GET    | /api/item/:item_id/posts       | Get array of posts by item_id        | Private |
-| GET    | /api/item/post/:id             | get post by id                       | Private |
-| PUT    | /api/item/post/:id             | Update post                          | Private |
-| DELETE | /api/item/post/:id             | Delete post                          | Private |
-| POST   | /api/item/post                 | Add a post                           | Private |
-| GET    | /api/item/post/:post_id/images | get images                           | Private |
-| GET    | /api/item/post/images/:id      | get single image by id               | Private |
-| POST   | /api/item/post/image           | Add image                            | Private |
-| PUT    | /api/item/post/image/:id       | Update image                         | Private |
-| DELETE | /api/item/post/image/:id       | delete image                         | Private |
-| GET    | /api/contacts                  | get contacts                         | public  |
-| POST   | /api/contacts                  | add contacts                         | public  |
-| DELETE | /api/contacts/:id              | delete contacts                      | public  |
-| GET    | /api/contacts/:id/messages     | get messages                         | public  |
-| POST   | /api/contacts/:id/messages     | add messages                         | public  |
+| Type   | Endpoints                       | Description                          | Access  |
+| ------ | ------------------------------- | ------------------------------------ | ------- |
+| POST   | [/api/register](#/api/register) | Register User                        | Public  |
+| POST   | /api/login                      | Login user                           | Public  |
+| GET    | /api/users                      | Get all users                        | Private |
+| GET    | /api/user                       | Get current user                     | Private |
+| GET    | /api/user/:id                   | Get user by id                       | Private |
+| GET    | /api/user/:id/items             | Get all users bucket list items      | Private |
+| GET    | /api/user/friends               | Get all users friends                | Private |
+| POST   | /user/friends/:friend_id        | Add a friend to your friends list    | Private |
+| DELETE | /user/friends/:friend_id        | Remove a friend to your friends list | Private |
+| GET    | /api/item/:id                   | get item by id                       | Private |
+| POST   | /api/item                       | post item                            | Private |
+| PUT    | /api/item/:id                   | Update item                          | Private |
+| DELETE | /api/item/:id                   | delete item                          | Private |
+| GET    | /api/item/:item_id/posts        | Get array of posts by item_id        | Private |
+| GET    | /api/item/post/:id              | get post by id                       | Private |
+| PUT    | /api/item/post/:id              | Update post                          | Private |
+| DELETE | /api/item/post/:id              | Delete post                          | Private |
+| POST   | /api/item/post                  | Add a post                           | Private |
+| GET    | /api/item/post/:post_id/images  | get images                           | Private |
+| GET    | /api/item/post/images/:id       | get single image by id               | Private |
+| POST   | /api/item/post/image            | Add image                            | Private |
+| PUT    | /api/item/post/image/:id        | Update image                         | Private |
+| DELETE | /api/item/post/image/:id        | delete image                         | Private |
+| GET    | /api/contacts                   | get contacts                         | public  |
+| POST   | /api/contacts                   | add contacts                         | public  |
+| DELETE | /api/contacts/:id               | delete contacts                      | public  |
+| GET    | /api/contacts/:id/messages      | get messages                         | public  |
+| POST   | /api/contacts/:id/messages      | add messages                         | public  |
 
 ### If Access is Private you need to pass token as header (Authorization...)
 
@@ -54,6 +54,8 @@
 `Register example`
 
 ### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/register
+
+#### `/api/register`
 
 ```
 {
