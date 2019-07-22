@@ -26,6 +26,11 @@
 | DELETE | /user/friends/:friend_id | Remove a friend to your friends list | Private |
 | GET    | /api/item/:id            | get item by id                       | Private |
 | POST   | /api/item                | post item                            | Private |
+| PUT    | /api/item/:id            | Update item                          | Private |
+| DELETE | /api/item/:id            | delete item                          | Private |
+| GET    | /api/item/:item_id/posts | Get array of posts by item_id        | Private |
+| GET    | /api/item/post/:id       | get post by id                       | Private |
+| POST   | /api/item/post           | Add a post                           | Private |
 
 
 ### If Access is Private you need to pass token as header (Authorization...)
@@ -239,15 +244,23 @@
 - Payload example below
 ```
 {
-    "item": {
-        "id": 2,
-        "user_id": 1,
-        "completed": false,
-        "description": "Go to Hawaii",
-    }
+    "completed": false,
+    "description": "Go to Hawaii",
+	  "user_id":1
 }
 
 ```
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/17
+- Update item 
+- pass item id in the @params
+- type of request `PUT`
+
+
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/17
+- DELETING an Item 
+- pass item id in the @params
+- type of request `DELETE`
+
 
 
 
