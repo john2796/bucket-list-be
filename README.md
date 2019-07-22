@@ -9,6 +9,8 @@
   - [Register-user](#register-user)
   - [Login-user](#login-user)
   - [Users](#users)
+  - [Contact](#contact)
+      - [Messages](#messages)
   - [Buckets](#buckets)
       - [Item](#item)
       - [Posts](#posts)
@@ -41,6 +43,11 @@
 | POST   | /api/item/post/image           | Add image                            | Private |
 | PUT    | /api/item/post/image/:id       | Update image                         | Private |
 | DELETE | /api/item/post/image/:id       | delete image                         | Private |
+| GET    | /api/contacts                  | get contacts                         | public  |
+| POST   | /api/contacts                  | add contacts                         | public  |
+| DELETE | /api/contacts/:id              | delete contacts                      | public  |
+| GET    | /contacts/:id/messages         | get messages                         | public  |
+| POST   | /contacts/:id/messages         | add messages                         | public  |
 
 
 ### If Access is Private you need to pass token as header (Authorization...)
@@ -316,9 +323,57 @@
 - Add image
 - type of request `POST`
 - payload example below
+```
+{
+    "post_id":1,
+    "url":"https://www.hindustantimes.com/rf/image_size_960x540/HT/p2/2019/07/21/Pictures/boxing-pacquiao-vs-thurman_89b8aab8-ab7d-11e9-bdb2-acd0277ecbef.jpg"
+}
+```
 
 
+### Contact
 
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts 
+- GET all contacts
+- type of request `GET`
+- 200 success response below
+- Public no need to be logged in
+```
+{
+    "contacts": [
+        {
+            "id": 1,
+            "firstname": "test",
+            "lastname": "test",
+            "email": "test@yahoo.com"
+        }
+    ]
+}
+```
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts 
+- Add Contact
+- type of request `POST`
+- Public 
+- Payload example below
+```
+{
+	"firstname":"test",
+	"lastname": "test",
+	 "email":"test@yahoo.com"
+}
+```
+### Messages
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/contacts/3/messages 
+- Add Contact
+- type of request `POST`
+- Public 
+- Payload example below
+```
+{
+	"contact_id":1, 
+	"message": "lorem ipsume"
+}
+```
 #### Documented by:
 
 - John Miranda : Team-Lead / Project-Manager --> you can dm me directly if you have any question `Happy Coding🧙🧙🧙`
