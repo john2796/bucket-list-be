@@ -8,14 +8,24 @@
 
   - [Register-user](#register-user)
   - [Login-user](#login-user)
-  - [Posts](#posts)
+  - [Users](#users)
+  - [Buckets](#buckets)
 
 ### Summary Table of API Endpoints
 
-| Type | Endpoints     | Description   | Access |
-| ---- | ------------- | ------------- | ------ |
-| POST | /api/register | Register User | Public |
-| POST | /api/login    | Login user    | Public |
+| Type   | Endpoints                | Description                          | Access  |
+| ------ | ------------------------ | ------------------------------------ | ------- |
+| POST   | /api/register            | Register User                        | Public  |
+| POST   | /api/login               | Login user                           | Public  |
+| GET    | /api/users               | Get all users                        | Private |
+| GET    | /api/user                | Get current user                     | Private |
+| GET    | /api/user/:id            | Get user by id                       | Private |
+| GET    | /api/user/:id/items      | Get all users bucket list items      | Private |
+| GET    | /api/user/friends        | Get all users friends                | Private |
+| POST   | /user/friends/:friend_id | Add a friend to your friends list    | Private |
+| DELETE | /user/friends/:friend_id | Remove a friend to your friends list | Private |
+| GET    | /api/item/:id            | get item by id                       | Private |
+| POST   | /api/item                | post item                            | Private |
 
 
 ### If Access is Private you need to pass token as header (Authorization...)
@@ -38,11 +48,9 @@
 #### Register user: 201 response ✅
 
 ```
- {
-    "id": 1,
-    "username": "john miranda",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxMiwidXNlcm5hbWUiOiJqb2huIG1pcmFuZGEiLCJpYXQiOjE1NjM3NzA5MjgsImV4cCI6MTU2Mzg1NzMyOH0.6NS1ABm8VY0iu0ltLPjpGNlIxWQWaU3-YLnA0ll9XQU"
-
+{
+    "message": "User created",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJqb2huMTJAeWFob28uY29tIiwicGFzc3dvcmQiOiIkMmEkMDgkcjV1OUQzaWdqUWVDeWVudFRRYWNwdXljT0tLQVdNb2IwcDBLdExCWGpTYmVjZ1BCVXg3ZmEiLCJpYXQiOjE1NjM4MjQ3ODEsImV4cCI6MTU2NjQxNjc4MX0.6tliWkNzyr5qgOuWtwGh37AYGza_n-w0eglAgBPWutI"
 }
 ```
 
@@ -64,14 +72,15 @@
 
 ## Login-user
 
-### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/auth/login
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/login
 
 `Login example`
 
+
 ```
 {
-    "username": "john miranda12",
-    "password": "password"
+	"email": "john12@yahoo.com",
+	"password": "john"
 }
 
 ```
@@ -80,8 +89,8 @@
 
 ```
 {
-    "message": "john miranda12 is logged in.",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoxNCwidXNlcm5hbWUiOiJqb2huIG1pcmFuZGExMiIsImlhdCI6MTU2Mzc3MTM2MiwiZXhwIjoxNTYzODU3NzYyfQ.Vp1_TX_iBL9YPQ0kEPa8dzdQFcdXg8snDfbYND9RF8k"
+    "message": "Logged in",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJqb2huMTJAeWFob28uY29tIiwicGFzc3dvcmQiOiIkMmEkMDgkcjV1OUQzaWdqUWVDeWVudFRRYWNwdXljT0tLQVdNb2IwcDBLdExCWGpTYmVjZ1BCVXg3ZmEiLCJpYXQiOjE1NjM4MjYwODcsImV4cCI6MTU2NjQxODA4N30.NqLeO1jGqRczW_2ijStLBSpiLxo0ulWGYhSDtdbct_U"
 }
 ```
 
@@ -89,7 +98,7 @@
 
 ```
 {
-    "message": "Username field is required"
+    "message": "Login info missing"
 }
 ```
 
@@ -101,72 +110,147 @@
 }
 ```
 
-## Posts
-
-### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/posts/all
-
-- You will need to make a `GET` request to this endpoint
-- This will return all the posts
-- @Access Public , you don't need to Log in for this endpoint
-
-### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/posts
-
+## Users
+- These are examples of what endpoints you can do with `/api/user`
 - User must be Logged In
 - Headers Authorization required
-- You will need to make a `GET` request to this endpoint
 
-```
-[
-    {
-        "id": 1,
-        "chef_name": "Erica",
-        "recipe_title": "Pizza",
-        "item_photo": "https://images.unsplash.com/photo-1528137871618-79d2761e3fd5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-        "chef_location": "Boston, Massachusetts",
-        "item_ingredients": "Pizza Dough, Pizza Sauce, Cheese, Basil",
-        "user_id": 1
-    },
-]
 
-```
 
-### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/posts/5
+
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/user
 
 - You will need to make a `GET` request to this endpoint
-- fetch Posts by id
-- Add Posts Id on the end of the URL just like the endpoint above
+- Get current User logged in
 
 ```
 {
-    "id": 5,
-    "chef_name": "Mitsuki",
-    "recipe_title": "Soup",
-    "item_photo": "https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
-    "chef_location": "Austin, TX",
-    "item_ingredients": "Water, Tomatoes, Cream, Basil",
-    "user_id": 2
+    "user": {
+        "id": 3,
+        "name": "john12",
+        "email": "john12@yahoo.com",
+        "created": "2019-07-22T19:46:21.129Z"
+    }
+}
+
+```
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/users
+
+- You will need to make a `GET` request to this endpoint
+- Get All users
+
+```
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Test User",
+            "email": "test@test.com",
+            "created": "2019-07-22T19:45:57.819Z"
+        },
+        {
+            "id": 2,
+            "name": "Test User 2",
+            "email": "test2@test.com",
+            "created": "2019-07-22T19:45:57.819Z"
+        },
+        {
+            "id": 3,
+            "name": "john12",
+            "email": "john12@yahoo.com",
+            "created": "2019-07-22T19:46:21.129Z"
+        }
+    ]
+}
+
+```
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/user/2
+
+- Get user by id
+- You will need to make a `GET` request to this endpoint
+- And add id to @params
+```
+{
+    "user": {
+        "id": 2,
+        "name": "Test User 2",
+        "email": "test2@test.com",
+        "created": "2019-07-22T19:45:57.819Z"
+    }
+}
+
+```
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/user/1/items
+
+- You will need to make a `GET` request to this endpoint
+- Need user_id to @params
+```
+{
+    "items": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "completed": false,
+            "description": "Drive a Ferrari",
+            "created": "2019-07-22T19:46:02.851Z"
+        },
+        {
+            "id": 2,
+            "user_id": 1,
+            "completed": false,
+            "description": "Go to Hawaii",
+            "created": "2019-07-22T19:46:02.851Z"
+        },
+        {
+            "id": 3,
+            "user_id": 1,
+            "completed": false,
+            "description": "Eat a pizza",
+            "created": "2019-07-22T19:46:02.851Z"
+        }
+    ]
 }
 
 ```
 
-### Endpoint: https://chef-portfolio-webtp6.herokuapp.com/api/posts/
 
-- Creating new post
-- You will need to make a `POST` request to this endpoint
-- Payload example below
+## Buckets
+- These are examples of what endpoints you can do with `/api/item`
+- User must be Logged In
 - Headers Authorization required
 
+
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/2
+- Get item by id
 ```
 {
-    "chef_name": "Mitsuki",
-    "recipe_title": "Soup",
-    "item_photo": "https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80",
-    "chef_location": "Austin, TX",
-    "item_ingredients": "Water, Tomatoes, Cream, Basil",
-    "user_id": 2
+    "item": {
+        "id": 2,
+        "user_id": 1,
+        "completed": false,
+        "description": "Go to Hawaii",
+        "created": "2019-07-22T19:46:02.851Z"
+    }
 }
 
 ```
+### Endpoint: https://bucket-list-webpt6.herokuapp.com/api/item/
+- Post Bucket item
+- Payload example below
+```
+{
+    "item": {
+        "id": 2,
+        "user_id": 1,
+        "completed": false,
+        "description": "Go to Hawaii",
+    }
+}
+
+```
+
+
+
 
 #### Documented by:
 
